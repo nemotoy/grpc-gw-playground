@@ -9,3 +9,5 @@ playground of the grpc-gateway in Go
 - [Protocol Buffer Basics: Go](https://developers.google.com/protocol-buffers/docs/gotutorial)
 - [style-guide](https://buf.build/docs/style-guide)
 - [prototool](https://github.com/uber/prototool)
+  - [lint](https://github.com/uber/prototool/blob/dev/docs/lint.md)
+    - [available-lint-rules](https://github.com/uber/prototool/blob/dev/docs/lint.md#available-lint-rules)
