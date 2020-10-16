@@ -1,0 +1,45 @@
+run:
+  deadline: 5m
+
+linters-settings:
+  gocyclo:
+    min-complexity: 10
+  lll:
+    line-length: 100
+  misspell:
+    locale: US
+  funlen:
+    lines: 60
+    statements: 40
+
+linters:
+  disable-all: true
+  enable:
+    - govet
+    - errcheck
+    - staticcheck
+    - unused
+    - gosimple
+    - structcheck
+    - ineffassign
+    - deadcode
+    - typecheck
+    - goimports
+    - misspell
+    - prealloc
+    - gocyclo
+    - varcheck
+    - stylecheck
+    - lll
+    - unconvert
+    - unparam
+    - funlen
+    - interfacer
+    - maligned
+    - gocritic
+    - scopelint
+    - wsl
+    - gosec
+
+service:
+  golangci-lint-version: 1.31.x
