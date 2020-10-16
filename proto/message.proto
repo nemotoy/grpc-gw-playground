@@ -1,9 +1,5 @@
 syntax = "proto3";
 
 message StringMessage {
-    string id = 1;
-    
-
-
-    
+  string id = 1;
 }
