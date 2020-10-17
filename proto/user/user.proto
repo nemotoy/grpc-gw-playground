@@ -2,7 +2,7 @@
 // https://developers.google.com/protocol-buffers/docs/reference/go/faq#proto-versions
 syntax = "proto3";
 // package represents a directory hierarchy.
-package proto.user;
+package user;
 
 message UserRequest {
   int64 id = 1;
