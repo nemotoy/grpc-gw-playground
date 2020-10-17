@@ -11,7 +11,7 @@ test.race:
 	$(GOTEST) -v -race ./...
 
 lint:
-	$(GOLINT) run -v ./... -c .golangci.yml
+	$(GOLINT) run -v ./... -c .golangci.yaml
 
 pb.go:
 	rm proto/user/user.pb.go
