@@ -1,4 +1,4 @@
-module grpc-gw-playground
+module github.com/nemotoy/grpc-gw-playground
 
 go 1.15
 

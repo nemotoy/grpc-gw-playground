@@ -1,8 +1,8 @@
 // version 3 is most commonly.
 // https://developers.google.com/protocol-buffers/docs/reference/go/faq#proto-versions
 syntax = "proto3";
-// package represents a directory hierarchy.
-package user;
+// go_package represents the import path in Go.
+option go_package = "github.com/nemotoy/grpc-gw-playground/proto/user";
 
 message UserRequest {
   int64 id = 1;

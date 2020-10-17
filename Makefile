@@ -14,6 +14,7 @@ lint:
 	$(GOLINT) run -v ./... -c .golangci.yml
 
 pb.go:
+	rm proto/user/user.pb.go
 	protoc -I . \
 		--go_out . \
 		--go_opt plugins=grpc \

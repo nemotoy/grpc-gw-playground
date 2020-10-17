@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 	"net"
 
@@ -25,4 +26,9 @@ func main() {
 
 func newUserServer() user.UserServiceServer {
 	return &userServer{}
+}
+
+func (s *userServer) GetUser(ctx context.Context, in *user.UserRequest) (*user.UserResponse, error) {
+	// do something
+	return nil, nil
 }
