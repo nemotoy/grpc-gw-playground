@@ -1,0 +1,21 @@
+// version 3 is most commonly.
+// https://developers.google.com/protocol-buffers/docs/reference/go/faq#proto-versions
+syntax = "proto3";
+// package represents a directory hierarchy.
+package proto.user;
+
+message UserRequest {
+  int64 id = 1;
+  string name = 2;
+}
+
+message UserResponse {
+  int64 id = 1;
+  string name = 2;
+  string sex = 3;
+  string email = 4;
+}
+
+service UserService {
+  rpc GetUser(UserRequest) returns (UserResponse) {}
+}
