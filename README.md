@@ -15,3 +15,5 @@ playground of the grpc-gateway in Go
   - lint
     - [tour](https://buf.build/docs/tour-4)
     - [docs](https://buf.build/docs/lint-overview)
+- [golangci-lint]
+  - [wsl#issues](https://github.com/bombsimon/wsl#issues-and-configuration)

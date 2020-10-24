@@ -25,7 +25,7 @@ func main() {
 
 	r, err := c.GetUser(ctx, &pb.UserRequest{Id: int64(1)})
 	if err != nil {
-		log.Fatalf("could not greet: %v", err)
+		log.Printf("failed to get a user: %v", err)
 	}
 
 	log.Printf("Response: %v", r)

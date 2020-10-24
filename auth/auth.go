@@ -22,6 +22,7 @@ func (a *Auth) Auth(ctx context.Context) (context.Context, error) {
 	fmt.Println(md)
 
 	key := "1"
+
 	v, ok := a.Keys[key]
 	if !ok {
 		return nil, status.Error(codes.Unauthenticated, "does not exist key")
