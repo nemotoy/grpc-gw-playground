@@ -14,8 +14,10 @@ lint:
 	$(GOLINT) run -v ./... -c .golangci.yaml
 
 pb.go:
-	rm proto/user/user.pb.go
 	protoc -I . \
 		--go_out . \
 		--go_opt plugins=grpc \
 		--go_opt paths=source_relative proto/user/user.proto
+
+pb.clean:
+	rm proto/user/user.pb.go
