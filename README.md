@@ -22,6 +22,8 @@ playground of the grpc-gateway in Go
   - lint
     - [tour](https://buf.build/docs/tour-4)
     - [docs](https://buf.build/docs/lint-overview)
+  - ci
+    - [github actions](https://github.com/bufbuild/buf-example/actions?workflow=CI)
 
 ### Others
 
