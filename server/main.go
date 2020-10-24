@@ -14,14 +14,6 @@ import (
 	"google.golang.org/grpc"
 )
 
-var (
-	keysStub = map[string]string{
-		"1": "1",
-		"2": "2",
-		"3": "3",
-	}
-)
-
 type userServer struct{}
 
 func newUserServer() pb.UserServiceServer {
@@ -40,7 +32,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	authImpl := &auth.Auth{Keys: keysStub}
+	authImpl := auth.New()
 	s := grpc.NewServer(
 		grpc_middleware.WithUnaryServerChain(
 			grpc_auth.UnaryServerInterceptor(authImpl.Auth),

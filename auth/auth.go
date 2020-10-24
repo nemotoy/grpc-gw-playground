@@ -9,8 +9,20 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+var (
+	stub = map[string]string{
+		"1": "1",
+		"2": "2",
+		"3": "3",
+	}
+)
+
 type Auth struct {
 	Keys map[string]string
+}
+
+func New() *Auth {
+	return &Auth{Keys: stub}
 }
 
 func (a *Auth) Auth(ctx context.Context) (context.Context, error) {
