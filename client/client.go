@@ -9,6 +9,7 @@ import (
 	"github.com/nemotoy/grpc-gw-playground/infra"
 	pb "github.com/nemotoy/grpc-gw-playground/proto/user"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/metadata"
 )
 
 func main() {
@@ -22,6 +23,11 @@ func main() {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
+
+	md := metadata.New(map[string]string{})
+	md["access_key"] = []string{"key1"}
+	md["test_param"] = []string{"val1", "val2"}
+	ctx = metadata.NewOutgoingContext(ctx, md)
 
 	r, err := c.GetUser(ctx, &pb.UserRequest{Id: int64(1)})
 	if err != nil {
