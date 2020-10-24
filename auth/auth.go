@@ -21,7 +21,12 @@ func (a *Auth) Auth(ctx context.Context) (context.Context, error) {
 
 	fmt.Println(md)
 
-	key := "1"
+	keys := md.Get("access_key")
+	if len(keys) < 1 {
+		return nil, status.Error(codes.Unauthenticated, "key is not found")
+	}
+
+	key := keys[0]
 
 	v, ok := a.Keys[key]
 	if !ok {
