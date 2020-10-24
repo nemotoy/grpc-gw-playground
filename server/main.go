@@ -9,12 +9,9 @@ import (
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_auth "github.com/grpc-ecosystem/go-grpc-middleware/auth"
 	"github.com/nemotoy/grpc-gw-playground/auth"
-	"github.com/nemotoy/grpc-gw-playground/proto/user"
+	"github.com/nemotoy/grpc-gw-playground/infra"
+	pb "github.com/nemotoy/grpc-gw-playground/proto/user"
 	"google.golang.org/grpc"
-)
-
-const (
-	port = 50051
 )
 
 var (
@@ -27,18 +24,18 @@ var (
 
 type userServer struct{}
 
-func newUserServer() user.UserServiceServer {
+func newUserServer() pb.UserServiceServer {
 	return &userServer{}
 }
 
 // GetUser implements userServiceSever.
-func (s *userServer) GetUser(ctx context.Context, in *user.UserRequest) (*user.UserResponse, error) {
+func (s *userServer) GetUser(ctx context.Context, in *pb.UserRequest) (*pb.UserResponse, error) {
 	// do something
-	return new(user.UserResponse), nil
+	return new(pb.UserResponse), nil
 }
 
 func main() {
-	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", port))
+	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", infra.Port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
@@ -52,9 +49,9 @@ func main() {
 
 	defer s.GracefulStop()
 
-	user.RegisterUserServiceServer(s, newUserServer())
+	pb.RegisterUserServiceServer(s, newUserServer())
 
-	log.Println("server starts: ", port)
+	log.Printf("server starts: %s\n", lis.Addr().String())
 
 	if err := s.Serve(lis); err != nil {
 		log.Printf("failed to serve: %v\n", err)

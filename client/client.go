@@ -2,20 +2,18 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"time"
 
+	"github.com/nemotoy/grpc-gw-playground/infra"
 	pb "github.com/nemotoy/grpc-gw-playground/proto/user"
 	"google.golang.org/grpc"
 )
 
-const (
-	address = "localhost:50051"
-)
-
 func main() {
 	// Set up a connection to the server.
-	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
+	conn, err := grpc.Dial(fmt.Sprintf("localhost:%d", infra.Port), grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
