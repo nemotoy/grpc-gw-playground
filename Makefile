@@ -13,17 +13,20 @@ test.race:
 lint:
 	$(GOLINT) run -v ./... -c .golangci.yaml
 
-pb.go:
-	protoc -I . \
-	--go_out . --go_opt paths=source_relative \
-	--go-grpc_out . --go-grpc_opt paths=source_relative \
-	proto/user/user.proto
-
 # pb.go:
 # 	protoc -I . \
-# 		--go_out . \
-# 		--go_opt plugins=grpc \
-# 		--go_opt paths=source_relative proto/user/user.proto
+# 	--go_out . --go_opt paths=source_relative \
+# 	--go-grpc_out . --go-grpc_opt paths=source_relative \
+# 	proto/user/user.proto
+
+pb.go:
+	protoc -I . \
+	--go_out . \
+	--go_opt plugins=grpc \
+	--go_opt paths=source_relative proto/user/user.proto
 
 pb.clean:
 	rm proto/user/user.pb.go
+
+test.req:
+	echo '{ "id" : 1 }' | evans --proto proto/user/user.proto cli call UserService.GetUser
