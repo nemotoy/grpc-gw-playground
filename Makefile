@@ -2,7 +2,7 @@ GOCMD=go
 GOTEST=$(GOCMD) test
 GOLINT=golangci-lint
 
-all: lint test
+all: pb.lint lint test
 
 test:
 	$(GOTEST) -v ./...
@@ -27,6 +27,9 @@ pb.go:
 
 pb.clean:
 	rm proto/user/user.pb.go
+
+pb.lint:
+	buf check lint
 
 evans.req:
 	echo '{ "id" : 1 }' | evans --proto proto/user/user.proto cli call UserService.GetUser
