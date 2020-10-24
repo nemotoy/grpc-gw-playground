@@ -28,9 +28,9 @@ pb.go:
 pb.clean:
 	rm proto/user/user.pb.go
 
-test.req:
+evans.req:
 	echo '{ "id" : 1 }' | evans --proto proto/user/user.proto cli call UserService.GetUser
 
-# Althogh can call rpc, can not use some command(header, ...)
+# For request to server in local by the evans.
 evans.init:
 	evans --port 50051 proto/user/user.proto
