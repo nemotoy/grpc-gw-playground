@@ -31,7 +31,7 @@ func (a *Auth) Auth(ctx context.Context) (context.Context, error) {
 		return nil, status.Error(codes.Unauthenticated, "error")
 	}
 
-	fmt.Println(md)
+	fmt.Println("metadata: ", md)
 
 	keys := md.Get("access_key")
 	if len(keys) < 1 {
@@ -40,12 +40,9 @@ func (a *Auth) Auth(ctx context.Context) (context.Context, error) {
 
 	key := keys[0]
 
-	v, ok := a.Keys[key]
-	if !ok {
+	if _, ok := a.Keys[key]; !ok {
 		return nil, status.Error(codes.Unauthenticated, "does not exist key")
 	}
-
-	fmt.Println(v)
 
 	return ctx, nil
 }
