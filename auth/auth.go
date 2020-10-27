@@ -17,11 +17,15 @@ var (
 	}
 )
 
+type Authenticator interface {
+	Auth(ctx context.Context) (context.Context, error)
+}
+
 type Auth struct {
 	Keys map[string]string
 }
 
-func New() *Auth {
+func New() Authenticator {
 	return &Auth{Keys: stub}
 }
 
@@ -37,6 +41,8 @@ func (a *Auth) Auth(ctx context.Context) (context.Context, error) {
 	if len(keys) < 1 {
 		return nil, status.Error(codes.Unauthenticated, "key is not found")
 	}
+
+	fmt.Println("keys: ", keys)
 
 	key := keys[0]
 

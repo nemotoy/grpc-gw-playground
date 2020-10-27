@@ -35,5 +35,8 @@ evans.req:
 	echo '{ "id" : 1 }' | evans --proto proto/user/user.proto cli call UserService.GetUser
 
 # For request to server in local by the evans.
+# init later, request to the server below commands.
+# $ header access_key=1
+# $ call GetUser
 evans.init:
 	evans --port 50051 proto/user/user.proto
