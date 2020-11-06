@@ -1,10 +1,16 @@
 name: ci
-on:
-  push:
-    branches:
-    - "main"
-
+on: push
 jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.31
+          args: -c .golangci.yaml
   test:
     runs-on: ubuntu-latest
     strategy:
@@ -17,18 +23,15 @@ jobs:
       uses: actions/setup-go@v1
       with:
         go-version: ${{ matrix.go }}
-    - name: Lint
-      uses: golangci/golangci-lint-action@v2
-      with:
-        version: v1.31
-        args: -c .golangci.yaml # NOTE: unable -v option.
     - name: Use cache dependencies
       uses: actions/cache@v1
       id: cache
       with:
         path: ~/go/pkg/mod
         key: ${{ runner.os }}-${{ hashFiles('**/go.sum') }}
-    - name: Download dependencies
+        restore-keys: |
+          ${{ runner.os }}-go-
+    - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       run: go mod download
     - name: Test
