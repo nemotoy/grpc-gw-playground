@@ -8,7 +8,7 @@ import (
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_auth "github.com/grpc-ecosystem/go-grpc-middleware/auth"
-	"github.com/nemotoy/grpc-gw-playground/auth"
+	"github.com/nemotoy/grpc-gw-playground/auth/impl"
 	"github.com/nemotoy/grpc-gw-playground/infra"
 	pb "github.com/nemotoy/grpc-gw-playground/proto/user"
 	"google.golang.org/grpc"
@@ -32,7 +32,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	authImpl := auth.New()
+	authImpl := impl.New()
 	s := grpc.NewServer(
 		grpc_middleware.WithUnaryServerChain(
 			grpc_auth.UnaryServerInterceptor(authImpl.Auth),
