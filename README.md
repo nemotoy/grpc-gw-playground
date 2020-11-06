@@ -29,3 +29,4 @@ playground of the grpc-gateway in Go
 
 - [golangci-lint](https://golangci-lint.run/)
   - [wsl#issues](https://github.com/bombsimon/wsl#issues-and-configuration)
+  - [golangci-lint-action](https://github.com/golangci/golangci-lint-action#how-to-use)
